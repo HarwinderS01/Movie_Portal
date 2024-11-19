@@ -35,10 +35,14 @@ const prisma = new PrismaClient();
 export async function GET() {
   try {
     const movies = await prisma.movie.findMany();
-    return NextResponse.json(movies);
+    console.log('Fetched movies:', movies); // Debugging to confirm response
+    return NextResponse.json(movies); // Ensure movies is an array
   } catch (err: unknown) {
     console.error('Error fetching movies:', err);
-    return NextResponse.json({ error: 'Failed to fetch movies' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Failed to fetch movies' },
+      { status: 500 }
+    );
   }
 }
 
@@ -49,21 +53,27 @@ export async function POST(req: Request) {
     const { title, actors, year } = body;
 
     if (!title || !actors || !year) {
-      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+      return NextResponse.json(
+        { error: 'Missing required fields' },
+        { status: 400 }
+      );
     }
 
     const newMovie = await prisma.movie.create({
       data: {
         title,
-        actors,
-        year,
+        actors: typeof actors === 'string' ? actors.split(',').map((actor: string) => actor.trim()) : actors,
+        year: parseInt(year, 10),
       },
     });
 
     return NextResponse.json(newMovie, { status: 201 });
   } catch (err: unknown) {
     console.error('Error adding movie:', err);
-    return NextResponse.json({ error: 'Failed to add movie' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Failed to add movie' },
+      { status: 500 }
+    );
   }
 }
 
@@ -74,18 +84,28 @@ export async function PUT(req: Request) {
     const { id, title, actors, year } = body;
 
     if (!id || !title || !actors || !year) {
-      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+      return NextResponse.json(
+        { error: 'Missing required fields' },
+        { status: 400 }
+      );
     }
 
     const updatedMovie = await prisma.movie.update({
       where: { id },
-      data: { title, actors, year },
+      data: {
+        title,
+        actors: typeof actors === 'string' ? actors.split(',').map((actor: string) => actor.trim()) : actors,
+        year: parseInt(year, 10),
+      },
     });
 
     return NextResponse.json(updatedMovie, { status: 200 });
   } catch (err: unknown) {
     console.error('Error updating movie:', err);
-    return NextResponse.json({ error: 'Failed to update movie' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Failed to update movie' },
+      { status: 500 }
+    );
   }
 }
 
@@ -96,16 +116,25 @@ export async function DELETE(req: Request) {
     const { id } = body;
 
     if (!id) {
-      return NextResponse.json({ error: 'Missing movie ID' }, { status: 400 });
+      return NextResponse.json(
+        { error: 'Missing movie ID' },
+        { status: 400 }
+      );
     }
 
     await prisma.movie.delete({
       where: { id },
     });
 
-    return NextResponse.json({ message: 'Movie deleted successfully' }, { status: 200 });
+    return NextResponse.json(
+      { message: 'Movie deleted successfully' },
+      { status: 200 }
+    );
   } catch (err: unknown) {
     console.error('Error deleting movie:', err);
-    return NextResponse.json({ error: 'Failed to delete movie' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Failed to delete movie' },
+      { status: 500 }
+    );
   }
 }
