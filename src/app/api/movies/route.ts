@@ -43,13 +43,26 @@ export async function GET() {
       { error: 'Failed to fetch movies' },
       { status: 500 }
     );
+  } finally {
+    await prisma.$disconnect(); // Properly disconnect the Prisma client
   }
 }
+
+// TypeScript types for incoming request payloads
+type MoviePayload = {
+  title: string;
+  actors: string | string[]; // Accepts comma-separated or an array
+  year: number | string; // Accepts either number or string for year
+};
+
+type UpdatePayload = MoviePayload & {
+  id: string;
+};
 
 // Add a new movie (POST)
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
+    const body: MoviePayload = await req.json();
     const { title, actors, year } = body;
 
     if (!title || !actors || !year) {
@@ -62,8 +75,8 @@ export async function POST(req: Request) {
     const newMovie = await prisma.movie.create({
       data: {
         title,
-        actors: typeof actors === 'string' ? actors.split(',').map((actor: string) => actor.trim()) : actors,
-        year: parseInt(year, 10),
+        actors: typeof actors === 'string' ? actors.split(',').map((actor) => actor.trim()) : actors,
+        year: parseInt(year.toString(), 10),
       },
     });
 
@@ -74,13 +87,15 @@ export async function POST(req: Request) {
       { error: 'Failed to add movie' },
       { status: 500 }
     );
+  } finally {
+    await prisma.$disconnect(); // Properly disconnect the Prisma client
   }
 }
 
 // Update an existing movie (PUT)
 export async function PUT(req: Request) {
   try {
-    const body = await req.json();
+    const body: UpdatePayload = await req.json();
     const { id, title, actors, year } = body;
 
     if (!id || !title || !actors || !year) {
@@ -94,8 +109,8 @@ export async function PUT(req: Request) {
       where: { id },
       data: {
         title,
-        actors: typeof actors === 'string' ? actors.split(',').map((actor: string) => actor.trim()) : actors,
-        year: parseInt(year, 10),
+        actors: typeof actors === 'string' ? actors.split(',').map((actor) => actor.trim()) : actors,
+        year: parseInt(year.toString(), 10),
       },
     });
 
@@ -106,6 +121,8 @@ export async function PUT(req: Request) {
       { error: 'Failed to update movie' },
       { status: 500 }
     );
+  } finally {
+    await prisma.$disconnect(); // Properly disconnect the Prisma client
   }
 }
 
@@ -136,5 +153,7 @@ export async function DELETE(req: Request) {
       { error: 'Failed to delete movie' },
       { status: 500 }
     );
+  } finally {
+    await prisma.$disconnect(); // Properly disconnect the Prisma client
   }
 }
