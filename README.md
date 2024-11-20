@@ -72,9 +72,9 @@ The **Movie Portal Project** is a full-stack web application that allows users t
 
 ## **Team Contributions**
 
-- **Person A**: Designed the database schema and set up Prisma.
-- **Person B**: Developed and tested the API routes.
-- **Person C**: Built and styled frontend components.
+- **Person A**: 
+- **Person B**:
+- **Person C**: 
 - **Harwinder Singh**: Managed deployment to Vercel and resolved deployment issues.
 
 ---
