@@ -1,40 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-#
-#
-# Ryan M. Van Popering - Testing and debugging. Code Overview. Database Overview.
-#
+# **Movie Portal Project**
 
-## Getting Started
+## **Project Overview**
 
-First, run the development server:
+The **Movie Portal Project** is a full-stack web application that allows users to manage a collection of movies. This project demonstrates CRUD (Create, Read, Update, Delete) operations on a movie database, using modern web technologies and best practices for both frontend and backend development.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## **Technologies Used**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### **Frontend**  
+- **Next.js**: Provides server-side rendering and client-side navigation for a seamless user experience.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### **Backend**  
+- **API Routes**: Handle CRUD operations within the Next.js framework.  
+- **Prisma ORM**: Enables type-safe and efficient database operations.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### **Database**  
+- **MongoDB**: Used to store and manage movie records.  
+- **Prisma Integration**: Allows seamless querying and mutation of MongoDB data.
 
-## Learn More
+### **Styling**  
+- **Tailwind CSS**: Ensures a responsive and modern design across all devices.
 
-To learn more about Next.js, take a look at the following resources:
+### **Deployment**  
+- **Vercel**: Provides hosting and continuous integration for the project, enabling fast and reliable production builds.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## **Key Features**
 
-## Deploy on Vercel
+### **Movie Management**
+- **Fetch**: Retrieve all movies from the database.
+- **Add**: Insert new movies with details such as title, actors, and year.
+- **Update**: Modify existing movie records.
+- **Delete**: Remove movies from the database.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### **Responsive Design**
+- Fully optimized for desktop and mobile devices using **Tailwind CSS**.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### **Real-Time Development**
+- Local development environment with live reloading.
+- Comprehensive error handling for efficient debugging.
+
+---
+
+## **How We Built It**
+
+### **1. Project Initialization**
+- Set up the Next.js project with TypeScript.
+- Configured Prisma to work with MongoDB.
+
+### **2. Backend Development**
+- Defined the Prisma schema to model the `Movie` collection.
+- Created API routes in Next.js for CRUD operations.
+- Used Prisma Client for database interactions.
+
+### **3. Frontend Development**
+- Built UI components using Next.js and Tailwind CSS.
+- Developed forms for adding and updating movies.
+- Displayed movie listings with real-time data from the database.
+
+### **4. Deployment**
+- Configured environment variables for secure database access.
+- Deployed the application to **Vercel** for a live production environment.
+- Managed database connections and tested production builds.
+
+### **5. Debugging and Testing**
+- Verified database operations locally.
+- Resolved deployment issues related to environment variables and API configurations.
+- Conducted thorough testing on both local and production environments.
+
+---
+
+## **Team Contributions**
+
+- **Person A**: Designed the database schema and set up Prisma.
+- **Person B**: Developed and tested the API routes.
+- **Person C**: Built and styled frontend components.
+- **Harwinder Singh**: Managed deployment to Vercel and resolved deployment issues.
+
+---
+
+This project serves as a comprehensive guide for building a full-stack web application using modern tools and frameworks.
