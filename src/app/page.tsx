@@ -57,16 +57,17 @@ export default function HomePage() {
   useEffect(() => {
     async function fetchMovies() {
       try {
-        const res = await fetch('/api/movies'); // Call the GET API route
-        const data = await res.json(); // Parse the response
-        setMovies(data); // Update state with fetched movies
+        const res = await fetch('/api/movies'); // API call to fetch movies
+        const data = await res.json();
+        console.log(data); // Log the returned data to inspect its structure
+        setMovies(Array.isArray(data) ? data : []); // Ensure movies is an array
       } catch (error) {
-        console.error('Failed to fetch movies', error); // Log any error
+        console.error('Failed to fetch movies', error); // Log the error
       }
     }
     fetchMovies();
-  }, []); // Runs only once on component mount
-
+  }, []);
+  
   // Handle form submission for adding or updating a movie
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

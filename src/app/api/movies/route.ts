@@ -35,16 +35,11 @@ const prisma = new PrismaClient();
 export async function GET() {
   try {
     const movies = await prisma.movie.findMany();
-    console.log('Fetched movies:', movies); // Debugging to confirm response
-    return NextResponse.json(movies); // Ensure movies is an array
+    console.log('Movies:', movies); // Log to ensure it’s an array
+    return NextResponse.json(movies);
   } catch (err: unknown) {
-    console.error('Error fetching movies:', err);
-    return NextResponse.json(
-      { error: 'Failed to fetch movies' },
-      { status: 500 }
-    );
-  } finally {
-    await prisma.$disconnect(); // Properly disconnect the Prisma client
+    console.error('Error fetching movies:', err); // Log error for debugging
+    return NextResponse.json({ error: 'Failed to fetch movies' }, { status: 500 });
   }
 }
 
