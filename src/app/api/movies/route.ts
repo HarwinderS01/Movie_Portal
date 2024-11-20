@@ -35,14 +35,13 @@ const prisma = new PrismaClient();
 export async function GET() {
   try {
     const movies = await prisma.movie.findMany();
-    console.log('Movies:', movies); // Log to ensure it’s an array
+    console.log('Movies fetched:', movies); // Inspect the response
     return NextResponse.json(movies);
   } catch (err: unknown) {
-    console.error('Error fetching movies:', err); // Log error for debugging
+    console.error('Error fetching movies:', err); // Log detailed error
     return NextResponse.json({ error: 'Failed to fetch movies' }, { status: 500 });
   }
 }
-
 // TypeScript types for incoming request payloads
 type MoviePayload = {
   title: string;
