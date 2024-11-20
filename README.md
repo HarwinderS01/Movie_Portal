@@ -72,9 +72,9 @@ The **Movie Portal Project** is a full-stack web application that allows users t
 
 ## **Team Contributions**
 
-- **Person A**: 
-- **Person B**:
 - **Pryanshu Lal**: Built and Styled frontend components.
+- **Person B**:
+- **Person C**:
 - **Harwinder Singh**: Managed deployment to Vercel and resolved deployment issues.
 
 ---
