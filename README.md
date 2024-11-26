@@ -73,7 +73,7 @@ The **Movie Portal Project** is a full-stack web application that allows users t
 ## **Team Contributions**
 
 - **Pryanshu Lal**: Built and Styled frontend components.
-- **Person B**:
+- **Jashanpreet Singh**: Developed and tested the API routes.
 - **Ryan M. Van Popering**: Testing and debugging. Database and code overview. 
 - **Harwinder Singh**: Managed deployment to Vercel and resolved deployment issues.
 
